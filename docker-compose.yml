@@ -1,0 +1,21 @@
+services:
+  itx_server:
+    build: ./
+    depends_on:
+      - itx_db
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/mnt/app
+      - /mnt/app/node_modules/
+      - ${HOME}/.config:/mnt/.config
+    environment:
+      DB_HOST: itx_db
+  itx_db:
+    build: ./postgres/
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: polywell

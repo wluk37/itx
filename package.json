@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "up": "docker-compose up",
+    "down": "docker-compose down",
+    "dev": "nodemon index.js",
+    "migrate": "knex migrate:latest --knexfile ./db/knexfile.js",
+    "rollback": "knex migrate:rollback --knexfile ./db/knexfile.js",
+    "seed": "knex seed:run --knexfile ./db/knexfile.js",
+    "db": "yarn run dev && yarn run migrate",
+    "_server": "docker exec -it backend_itx_server_1 /bin/bash",
+    "_db": "docker exec -it backend_itx_db_1 /bin/bash",
+    "rm_img": "docker image rm backend_itx_server backend_itx_db",
+    "rm_vol": "docker volume prune"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.21",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "faker": "^5.5.3",
+    "nodemon": "^2.0.12"
+  }
+}
