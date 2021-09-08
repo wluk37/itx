@@ -23,7 +23,6 @@ exports.seed = function (knex) {
         50,
         SERIES_TABLENAME
       );
-      // console.log(fakeData);
       return knex(SERIES_TABLENAME)
         .insert(fakeData)
         .onConflict("series")

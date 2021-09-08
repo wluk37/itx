@@ -1,6 +1,7 @@
 const {
   CPU_RAM_TABLENAME,
   RAM_TABLENAME,
+  CPU_TABLENAME,
 } = require("../config/tablenames.json");
 
 exports.up = function (knex) {
@@ -10,8 +11,10 @@ exports.up = function (knex) {
       .integer(`fk_${RAM_TABLENAME}_id`)
       .unsigned()
       .references(`${RAM_TABLENAME}.${RAM_TABLENAME}_id`);
-    table.integer("max_gb").unsigned();
-    table.integer("num_channels").unsigned();
+    table
+      .integer(`fk_${CPU_TABLENAME}_id`)
+      .unsigned()
+      .references(`${CPU_TABLENAME}.${CPU_TABLENAME}_id`);
   });
 };
 
